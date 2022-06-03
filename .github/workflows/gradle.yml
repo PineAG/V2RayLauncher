@@ -32,7 +32,7 @@ jobs:
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
         arguments: build
-    - name: Build with Gradle
+    - name: Create exe file
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
         arguments: createDistributable
@@ -43,3 +43,13 @@ jobs:
         mv v2ray\v2ray.exe v2ray.exe
         rmdir v2ray
         Remove-Item v2ray.zip
+        cd ..
+        zip V2RayLauncher.zip V2RayLauncher
+    - name: Upload files to GitHub release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file_glob: true
+        file: build\compose\binaries\main\app\V2RayLauncher.zip
+        tag: latest
+        overwrite: true
