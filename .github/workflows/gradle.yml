@@ -20,7 +20,7 @@ jobs:
   build:
 
     runs-on: windows-latest
-
+    permissions: write-all
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -36,7 +36,8 @@ jobs:
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
         arguments: createDistributable
-    - run: |
+    - name: 'Download V2Ray' 
+      run: |
         cd build\compose\binaries\main\app\V2RayLauncher\
         Invoke-WebRequest -Uri https://github.com/v2fly/v2ray-core/releases/download/v4.45.0/v2ray-windows-64.zip -OutFile v2ray.zip
         unzip -d v2ray v2ray.zip
