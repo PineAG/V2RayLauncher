@@ -44,7 +44,7 @@ jobs:
         rmdir -Recurse v2ray
         Remove-Item v2ray.zip
         cd ..
-        zip V2RayLauncher.zip V2RayLauncher
+        Compress-Archive -DestinationPath V2RayLauncher.zip -Path V2RayLauncher
     - name: Upload files to GitHub release
       uses: svenstaro/upload-release-action@v2
       with:
