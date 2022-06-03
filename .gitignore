@@ -45,3 +45,4 @@ bin/
 /v2ray.zip
 /v2ray.exe
 /.idea
+/gradlew_debug.bat
